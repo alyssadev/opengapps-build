@@ -10,7 +10,7 @@ mv /var/www/logtail/* /var/www/html/
 apt-get -y install software-properties-common
 apt-add-repository ppa:maarten-fonville/android-build-tools
 apt-get -y install openjdk-8-jdk build-essential lzip git zip git-lfs bc android-build-tools-installer
-export HOSTNAME=$(curl -s http://169.254.169.254/metadata/v1/hostname)
+export HOSTNAME=`cat /etc/hostname`
 git clone https://github.com/opengapps/opengapps /var/www/html/opengapps
 cd /var/www/html/opengapps
 curl https://github.com/opengapps/opengapps/commit/f45c00cd0433583257c26947a8e6809e1b2a8ba0.diff | git apply
