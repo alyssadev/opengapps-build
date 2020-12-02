@@ -11,14 +11,14 @@ echo Droplet at $IP, waiting for connection
 until (curl http://$IP/log 2>/dev/null >/dev/null); do
 	sleep 1
 done
-echo Connected
-sleep 1
 until (curl http://$IP 2>/dev/null | grep "BUILD COMPLETE" >/dev/null); do
-	echo "Last ten lines of log (http://$IP):"
-	curl http://$IP/log 2>/dev/null | tail | sed 's/\r//g'
+	echo "Full log: http://$IP"
+	echo $NEXTLOG
 	sleep 2
+	export NEXTLOG="`curl http://$IP/log 2>/dev/null | tail`"
 	clear
 done
 export FN=`curl http://$IP 2>/dev/null | grep "BUILD COMPLETE" | awk '{print $3}'`
 wget http://$IP/build.zip -O $FN
+echo Build complete, deleting droplet
 doctl compute droplet delete -f $makeparam
