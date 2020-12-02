@@ -13,9 +13,8 @@ until (curl http://$IP/log 2>/dev/null >/dev/null); do
 done
 until (curl http://$IP 2>/dev/null | grep "BUILD COMPLETE" >/dev/null); do
 	echo "Full log: http://$IP"
-	echo $NEXTLOG
+	curl http://$IP/log 2>/dev/null | tail
 	sleep 2
-	export NEXTLOG="`curl http://$IP/log 2>/dev/null | tail`"
 	clear
 done
 export FN=`curl http://$IP 2>/dev/null | grep "BUILD COMPLETE" | awk '{print $3}'`
