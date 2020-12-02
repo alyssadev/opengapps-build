@@ -12,5 +12,5 @@ Digitalocean usage
 ------------------
 
 * Set up [doctl](https://www.digitalocean.com/community/tutorials/how-to-use-doctl-the-official-digitalocean-command-line-client) with credentials, ensure you can create and delete droplets
-* Run ./run-on-do.sh
+* Run `./run-on-do.sh [make target]`. If you don't specify a make target (see above), it will automatically select `arm-29-micro`.
 * The script will provision a droplet that costs $0.06 USD an hour, complete the build if possible, and use wget to download the opengapps zip to your working directory. If there's an error, the droplet may not be destroyed; make sure you delete the droplet if it stalls or is unable to complete the build.
