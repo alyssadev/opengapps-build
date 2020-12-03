@@ -2,10 +2,11 @@
 
 mkdir -p /var/www/html
 ln -s /var/log/cloud-init-output.log /var/www/html/log
+git clone --depth=1 https://github.com/ukhas/js-logtail /var/www/logtail
+mv /var/www/logtail/* /var/www/html/
+apt-get remove -y --purge man-db
 apt-get -y update
 apt-get -y install nginx
-git clone https://github.com/ukhas/js-logtail /var/www/logtail
-mv /var/www/logtail/* /var/www/html/
 
 apt-get -y install software-properties-common
 apt-add-repository ppa:maarten-fonville/android-build-tools
